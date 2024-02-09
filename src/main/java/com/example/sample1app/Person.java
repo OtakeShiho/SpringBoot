@@ -6,6 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="people")
@@ -14,15 +19,20 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
+    @NotNull
     private long id;
 
     @Column(length = 50,nullable = false)
+    @NotBlank(massage = "名前書かないとダメ！")
     private String name;
 
     @Column(length = 200,nullable = true)
+    @Email(massage = "メールアドレス教えて♡")
     private String mail;
 
     @Column(nullable = true)
+    @Min(value = 0, massage = "いやいや、マイナスの歳ってないでしょ？")
+    @Max(value = 200, massage = "200歳以上って、魔女ですか？")
     private Integer age;
 
     @Column(nullable = true)

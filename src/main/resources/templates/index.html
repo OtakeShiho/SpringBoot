@@ -39,8 +39,11 @@
         </div>
         <div class="mb-3">
             <label for="memo" class="form-label">Memo</label>
-            <textarea class="form-control"
-                name="memo" th:value="*{memo}"></textarea>
+            <textarea class="form-control" th:errorclass="err"
+                name="memo" th:text="*{memo}"></textarea>
+            <div th:if="${#fields.hasErrors('memo')}"
+            th:errors="*{memo}" th:errorclass="err">
+            </div>
         </div>
         <input type="submit" class="btn btn-primary"value="Create"/>
      </form>

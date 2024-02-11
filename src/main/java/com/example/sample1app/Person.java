@@ -23,20 +23,21 @@ public class Person {
     private long id;
 
     @Column(length = 50,nullable = false)
-    @NotBlank(massage = "名前書かないとダメ！")
+    @NotBlank
     private String name;
 
     @Column(length = 200,nullable = true)
-    @Email(massage = "メールアドレス教えて♡")
+    @Email
     private String mail;
 
     @Column(nullable = true)
-    @Min(value = 0, massage = "いやいや、マイナスの歳ってないでしょ？")
-    @Max(value = 200, massage = "200歳以上って、魔女ですか？")
+    @Min(0)
+    @Max(200)
     private Integer age;
 
     @Column(nullable = true)
-    private String memo;
+        @Phone(onlyNumber = true)
+        private String memo;
 
     public long getId(){
         return id;
